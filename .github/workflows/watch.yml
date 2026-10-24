@@ -2,10 +2,9 @@ name: Career page watch
 
 on:
   schedule:
-    # GitHub cron is UTC only. 10:17 UTC = 2:17am PST (winter, standard time) / 3:17am PDT (summer)
-    # = 3:47pm IST for the sister profile (India has no daylight saving).
+    # GitHub cron is UTC only. 13:30 UTC = 7:00pm IST.
     # Off the top of the hour on purpose: :00 is when GitHub's scheduler is busiest and runs start latest.
-    - cron: "17 10 * * *"
+    - cron: "30 13 * * *"
   workflow_dispatch: # "Run workflow" button in the Actions tab
 
 permissions:
@@ -66,24 +65,24 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: python careers_watch.py
 
-      - name: Run watcher (sister, India)
+      - name: Run watcher (me, India)
         if: env.HAS_SISTER == 'true' # skipped until the SISTER_SHEET_ID secret exists
         continue-on-error: true
         working-directory: ${{ steps.loc.outputs.dir }}
         env:
           SHEET_ID: ${{ secrets.SISTER_SHEET_ID }}
           SHEET_GID: ${{ vars.SISTER_SHEET_GID }}
-          DATA_DIR: sister # her state.json, history.json, new.html live in <script folder>/sister/
+          DATA_DIR: me # my state.json, history.json, new.html live in <script folder>/me/
           REGION: IN
           PLACES: Bengaluru,Bangalore,Karnataka # only these; other Indian cities are dropped
           TIMEZONE: Asia/Kolkata
-          # Only titles containing one of these show up on her page (case-insensitive, whole words).
+          # Only titles containing one of these show up on my page (case-insensitive, whole words).
           ROLE_KEYWORDS: >-
-            financial analyst,finance analyst,FP&A,FPNA,financial planning,performance management,
-            EPM,CPM,business finance,tax analyst,tax,indirect tax,direct tax,GST,VAT,transfer pricing
+            data analyst,analytics,bi analyst,business intelligence,sql,power bi,tableau,looker,
+            etl,python,data warehouse,dbt,analytics engineer,reporting,customer insights
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          NOTIFY_TO: ${{ secrets.SISTER_NOTIFY_TO }} # her email; no email is sent if this is unset
+          NOTIFY_TO: ${{ secrets.SISTER_NOTIFY_TO }} # my email; no email is sent if this is unset
         run: |
           if [ -z "$NOTIFY_TO" ]; then unset GMAIL_USER GMAIL_APP_PASSWORD; fi
           python careers_watch.py
@@ -93,7 +92,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for f in state.json history.json new.html sister/state.json sister/history.json sister/new.html; do
+          for f in state.json history.json new.html me/state.json me/history.json me/new.html; do
             if [ -f "$f" ]; then git add "$f"; fi
           done
           if git diff --cached --quiet; then
@@ -123,10 +122,10 @@ jobs:
           mkdir site
           cp "${{ needs.watch.outputs.dir }}/new.html" site/index.html
           cp "${{ needs.watch.outputs.dir }}/report.css" site/report.css
-          if [ -f "${{ needs.watch.outputs.dir }}/sister/new.html" ]; then
-            mkdir site/sister
-            cp "${{ needs.watch.outputs.dir }}/sister/new.html" site/sister/index.html
-            cp "${{ needs.watch.outputs.dir }}/report.css" site/sister/report.css
+          if [ -f "${{ needs.watch.outputs.dir }}/me/new.html" ]; then
+            mkdir site/me
+            cp "${{ needs.watch.outputs.dir }}/me/new.html" site/me/index.html
+            cp "${{ needs.watch.outputs.dir }}/report.css" site/me/report.css
           fi
 
       - uses: actions/configure-pages@v6

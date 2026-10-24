@@ -52,7 +52,7 @@ DATA.mkdir(parents=True, exist_ok=True)
 STATE = DATA / "state.json"
 HISTORY = DATA / "history.json"
 PAGE = DATA / "new.html"
-TZ = ZoneInfo(os.getenv("TIMEZONE", "").strip() or "America/Los_Angeles")
+TZ = ZoneInfo(os.getenv("TIMEZONE", "").strip() or "Asia/Kolkata")
 MAX_RUNS = 200  # runs kept in history.json
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "

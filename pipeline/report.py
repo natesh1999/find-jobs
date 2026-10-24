@@ -93,6 +93,6 @@ def render(history, watched, checked_at, inline_css=False, errors=None):
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 {style}</head><body><div class="wrap">
 <header><h1>{escape(headline)}</h1>
-<p class="meta">Watching {watched} career page{'s' if watched != 1 else ''}. Last checked {checked_at:%b %-d at %-I:%M %p} PT.</p>
+<p class="meta">Watching {watched} career page{'s' if watched != 1 else ''}. Last checked {checked_at:%b %-d at %-I:%M %p %Z}.</p>
 <div class="tools"><input type="search" id="q" placeholder="Filter by role or company" aria-label="Filter by role or company"></div></header>
 {errors_html}<main>{body}</main></div><script>{JS}</script></body></html>"""
