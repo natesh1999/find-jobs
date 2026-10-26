@@ -1,5 +1,29 @@
 [
  {
+  "checked": "2026-10-25T22:41:28.103069+05:30",
+  "findings": [
+   {
+    "company": "GE Vernova",
+    "url": "https://careers.gevernova.com/jobs?keyword=Lead%20Data%20Engineer%20%E2%80%93%20Engineering%20Systems&filter%5Bstate%5D%5B0%5D=Karn%C4%81taka&filter%5Bcity%5D%5B0%5D=Bengaluru",
+    "first": true,
+    "emails": [],
+    "items": [
+     {
+      "title": "Lead Engineer - System Value Optimization",
+      "loc": "Barcelona ES 10, Roc Boronat 78, Barcelona, CT",
+      "ok": "match"
+     },
+     {
+      "title": "Senior System Value Optimization Engineer",
+      "loc": "Barcelona ES 10, Roc Boronat 78, Barcelona, CT",
+      "ok": "match"
+     }
+    ]
+   }
+  ],
+  "errors": []
+ },
+ {
   "checked": "2026-10-24T07:02:00.603515-07:00",
   "findings": [
    {
