@@ -1,138 +1,60 @@
-name: Career page watch
-
+name: careers-watch
 on:
   schedule:
-    # GitHub cron is UTC only. 13:30 UTC = 7:00pm IST.
-    # Off the top of the hour on purpose: :00 is when GitHub's scheduler is busiest and runs start latest.
-    - cron: "30 13 * * *"
-  workflow_dispatch: # "Run workflow" button in the Actions tab
+    - cron: "30 13 * * *"   # 7:00 PM IST daily
+  workflow_dispatch:
 
 permissions:
-  contents: write # to commit state.json, history.json, new.html back to the repo
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # run all JS actions on Node 24
+  contents: write
 
 concurrency:
-  group: career-watch
+  group: careers-watch
   cancel-in-progress: false
 
+env:
+  DIR: pipeline   # folder containing careers_watch.py ("." if at repo root)
+
 jobs:
-  watch:
-    runs-on: ubuntu-24.04
+  run:
+    runs-on: ubuntu-latest
     timeout-minutes: 30
-    env:
-      HAS_SISTER: ${{ secrets.SISTER_SHEET_ID != '' }}
-    outputs:
-      dir: ${{ steps.loc.outputs.dir }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
-      - name: Locate script folder
-        id: loc
-        run: |
-          echo "Tracked files:"; git ls-files
-          path=$(git ls-files | grep -E '(^|/)careers_watch\.py$' | head -n1)
-          if [ -z "$path" ]; then echo "::error::careers_watch.py is not committed to this repo"; exit 1; fi
-          dir=$(dirname "$path")
-          echo "Using folder: $dir"
-          echo "dir=$dir" >> "$GITHUB_OUTPUT"
-
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install dependencies
-        working-directory: ${{ steps.loc.outputs.dir }}
+        working-directory: ${{ env.DIR }}
         run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt
-          else pip install requests beautifulsoup4 playwright; fi
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
 
-      - name: Install headless browser
-        run: python -m playwright install --with-deps chromium # for JavaScript-rendered career pages
-
-      - name: Run watcher (Vishal, US)
-        continue-on-error: true # a failure here must not block the other profile or the commit
-        working-directory: ${{ steps.loc.outputs.dir }}
+      - name: Run watcher
+        working-directory: ${{ env.DIR }}
         env:
-          SHEET_ID: ${{ secrets.SHEET_ID }} # secret, not a variable: variables show up in public run logs
+          SHEET_ID: ${{ vars.SHEET_ID }}
           SHEET_GID: ${{ vars.SHEET_GID }}
-          REGION: US
-          US_ONLY: ${{ vars.US_ONLY }} # set repo variable US_ONLY=no to include roles outside the US
+          TIMEZONE: Asia/Kolkata
+          REGION: IN
+          ROLE_KEYWORDS: ${{ vars.ROLE_KEYWORDS }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          NOTIFY_TO: ${{ vars.NOTIFY_TO }}
         run: python careers_watch.py
 
-      - name: Run watcher (me, India)
-        if: env.HAS_SISTER == 'true' # skipped until the SISTER_SHEET_ID secret exists
-        continue-on-error: true
-        working-directory: ${{ steps.loc.outputs.dir }}
-        env:
-          SHEET_ID: ${{ secrets.SISTER_SHEET_ID }}
-          SHEET_GID: ${{ vars.SISTER_SHEET_GID }}
-          DATA_DIR: me # my state.json, history.json, new.html live in <script folder>/me/
-          REGION: IN
-          PLACES: Bengaluru,Bangalore,Karnataka # only these; other Indian cities are dropped
-          TIMEZONE: Asia/Kolkata
-          # Only titles containing one of these show up on my page (case-insensitive, whole words).
-          ROLE_KEYWORDS: >-
-            data analyst,analytics,bi analyst,business intelligence,sql,power bi,tableau,looker,
-            etl,python,data warehouse,dbt,analytics engineer,reporting,customer insights
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          NOTIFY_TO: ${{ secrets.SISTER_NOTIFY_TO }} # my email; no email is sent if this is unset
+      - name: Save state and history
+        if: always()
+        working-directory: ${{ env.DIR }}
         run: |
-          if [ -z "$NOTIFY_TO" ]; then unset GMAIL_USER GMAIL_APP_PASSWORD; fi
-          python careers_watch.py
-
-      - name: Commit results
-        working-directory: ${{ steps.loc.outputs.dir }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for f in state.json history.json new.html me/state.json me/history.json me/new.html; do
-            if [ -f "$f" ]; then git add "$f"; fi
-          done
+          git config user.name "careers-bot"
+          git config user.email "careers-bot@users.noreply.github.com"
+          git add -f state.json history.json new.html || true
           if git diff --cached --quiet; then
-            echo "Nothing to commit."
+            echo "nothing to commit"
           else
-            git commit -m "Career watch: $(TZ=America/Los_Angeles date '+%Y-%m-%d %H:%M %Z')"
+            git commit -m "careers watch $(date -u +%F)"
+            git pull --rebase origin ${{ github.ref_name }}
             git push
           fi
-
-  deploy:
-    needs: watch
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: ${{ github.ref_name }} # latest commit, including the bot's results from the watch job
-
-      - name: Build site
-        run: |
-          mkdir site
-          cp "${{ needs.watch.outputs.dir }}/new.html" site/index.html
-          cp "${{ needs.watch.outputs.dir }}/report.css" site/report.css
-          if [ -f "${{ needs.watch.outputs.dir }}/me/new.html" ]; then
-            mkdir site/me
-            cp "${{ needs.watch.outputs.dir }}/me/new.html" site/me/index.html
-            cp "${{ needs.watch.outputs.dir }}/report.css" site/me/report.css
-          fi
-
-      - uses: actions/configure-pages@v6
-
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: site
-
-      - id: deployment
-        uses: actions/deploy-pages@v5
