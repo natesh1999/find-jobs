@@ -2148,14 +2148,14 @@
    "Skip to content",
    "The Energy of Change Starts With You"
   ],
-  "checked": "2026-11-10T10:03:48.453300+05:30"
+  "checked": "2026-11-10T10:15:16.458776+05:30"
  },
  "https://www.amazon.jobs/content/en/locations/india/bangalore?keyword%5B%5D=data+engineer": {
   "company": "Amazon",
   "items": [
    "Bangalore, India"
   ],
-  "checked": "2026-11-10T10:03:48.453300+05:30"
+  "checked": "2026-11-10T10:15:16.458776+05:30"
  },
  "https://www.google.com/about/careers/applications/jobs/results?q=%22Data%20Engineer%22": {
   "company": "Google",
@@ -2225,11 +2225,98 @@
    "home Home",
    "link Copy link"
   ],
-  "checked": "2026-11-10T10:03:48.453300+05:30"
+  "checked": "2026-11-10T10:15:16.458776+05:30"
  },
  "https://apply.careers.microsoft.com/careers?hl=en&query=Data+Engineer&start=0&location=Bengaluru%2C+KA%2C+India&pid=1970393556947397&sort_by=relevance&filter_distance=160&filter_include_remote=1&filter_include_relocation=0": {
   "company": "Microsoft",
   "items": [],
-  "checked": "2026-11-10T10:03:48.453300+05:30"
+  "checked": "2026-11-10T10:15:16.458776+05:30"
+ },
+ "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?keyword=Data+Engineer&location=Bengaluru%2C+Karnataka%2C+India&locationId=300000081145775&locationLevel=city&mode=location&radius=25&radiusUnit=MI": {
+  "company": "JPMorganChase",
+  "items": [
+   "+ 0 mi",
+   "+ 10 mi",
+   "+ 25 mi",
+   "+ 5 mi",
+   "+ 50 mi",
+   "79 Open Jobs",
+   "Agility ( 1 )",
+   "Analytics Solutions & Delivery",
+   "Analytics Solutions & Delivery ( 3 )",
+   "Apply your skillsets to drive innovation and modernize the world's most complex and mission-critical systems",
+   "Architecture ( 1 )",
+   "Are You Still With Us?",
+   "Be a key player in revolutionizing payment operations, where your expertise will drive efficiency and innovation.",
+   "Bengaluru, Karnataka, India",
+   "Bengaluru, Karnataka, India and 1 more",
+   "Build and deploy agentic AI and machine learning solutions in Python to solve complex business problems at scale.",
+   "Build and scale robust data platforms using backend engineering and big data skills in Python and Java to promote business growth.",
+   "Careers",
+   "Carry out critical infrastructure engineering solutions across multiple technical areas as an integral part of an agile team",
+   "Carry out critical tech solutions across multiple technical areas as an integral part of an agile team",
+   "Categories 0",
+   "Data & Analytics",
+   "Data Management ( 1 )",
+   "Data Scientist Lead - Agentic Solutions Bengaluru, Karnataka, India Data & Analytics Predictive Science We have an exciting and rewarding opportunity for you .",
+   "Didn't find the perfect job? Create a profile so we can help",
+   "Distance",
+   "Drive innovation and solution delivery while leading a technical data area and serving as a primary decision maker for your teams",
+   "Drive significant business impact and tackle a diverse array of challenges that span multiple technologies and applications",
+   "Engineer enterprise-scale VMware infrastructure across global data centers, powering tens of thousands of workloads with automation.",
+   "Executive Director leading Java and Amazon Web Services modernization for a high-scale reconciliations platform.",
+   "Filter Results",
+   "Greater than 30 days ( 10 )",
+   "Grow with us",
+   "Help build the risk platforms that protect JPMorgan Chase from market shocks, every single day.",
+   "How we hire",
+   "I am an employee",
+   "IMPORTANT NOTICE: PLEASE READ CAREFULLY BEFORE USING THIS WEBSITE",
+   "Individual contributor role leading data governance, authorization & engine-agnostic data-mesh architecture for Market Data Lake.",
+   "Infrastructure Engineering",
+   "Infrastructure Engineering ( 4 )",
+   "Join the Network",
+   "Lead Security Engineer developing secure software systems; drive technical excellence, reliability, and end-to-end ownership.",
+   "Lead multiple teams, manage day-to-day implementation activities, and set overall guidance for team output, practices and collaboration",
+   "Less than 30 days ( 69 )",
+   "Less than 7 days ( 25 )",
+   "Location",
+   "Manage Preferences",
+   "Onboarding ( 2 )",
+   "Operations",
+   "Payments Lifecycle",
+   "Payments Lifecycle ( 1 )",
+   "Postal Code",
+   "Posting Date",
+   "Posting Dates 0",
+   "Posting Dates 0 Less than 30 days ( 69 ) Less than 7 days ( 25 ) Greater than 30 days ( 10 )",
+   "Predictive Science",
+   "Predictive Science ( 10 )",
+   "Product ( 1 )",
+   "Product Management ( 1 )",
+   "Product Portfolio & Delivery ( 1 )",
+   "Relevance",
+   "Search Jobs - JPMC Candidate Experience page Careers",
+   "Security Engineering",
+   "Security Engineering ( 1 )",
+   "Serve as an emerging member of an agile team to design and deliver market-leading technology products in a secure and scalable way",
+   "Skip to main content.",
+   "Software Engineering",
+   "Software Engineering ( 50 )",
+   "Students",
+   "Switch to Kilometers",
+   "Talent Network",
+   "Talent Network Didn't find the perfect job? Create a profile so we can help Join the Network",
+   "Technical Program Delivery ( 1 )",
+   "Technology",
+   "This summary is generated by AI Assist. Click inside the summary text box to make changes as necessary.",
+   "Treasury ( 1 )",
+   "We have an exciting and rewarding opportunity for you .",
+   "We have an opportunity to impact your career and provide an adventure where you can push the limits of what's possible.",
+   "Work Summary",
+   "Work in technology while increasing your knowledge and skillsets at one of the world's leading organizations",
+   "Work with us"
+  ],
+  "checked": "2026-11-10T10:15:16.458776+05:30"
  }
 }
