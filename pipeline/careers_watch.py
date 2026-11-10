@@ -19,6 +19,8 @@ Notifications (optional, via environment variables):
 Every run rewrites new.html (all findings, newest first) from history.json.
 """
 import csv, io, json, os, re, smtplib
+from html import escape
+from urllib.parse import urljoin
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from email.mime.text import MIMEText
@@ -126,7 +128,16 @@ def is_us(text):
     if US_MARK_CI.search(text):
         return True
     india = IN_MARK.search(text)  # ", IN" next to an Indian city is India, not Indiana
-    return any(not (india and m.group().replace(",", "").strip() == "IN") for m in US_MARK.finditer(text))
+    for m in US_MARK.finditer(text):
+        tok = m.group().replace(",", "").strip()
+        if tok == "IN" and india:
+            continue
+        if m.group().startswith(","):  # weak "City, ST" hint: not US if the city itself is foreign ("Barcelona, CT")
+            before = re.split(r"[;|]", text[:m.start()])[-1]
+            if FOREIGN_MARK.search(before):
+                continue
+        return True
+    return False
 
 
 def region_status(text):
@@ -209,7 +220,7 @@ def fetch(url, render=False):
     return html
 
 
-def extract(html, selector):
+def extract(html, selector, base=""):
     soup = BeautifulSoup(html, "html.parser")
     emails = set(EMAIL.findall(soup.get_text(" ")))
     emails |= {a["href"][7:].split("?")[0] for a in soup.select('a[href^="mailto:"]')}
@@ -218,7 +229,7 @@ def extract(html, selector):
     roots = soup.select(selector) if selector else []
     if not roots:  # selector missing or not found in the HTML -> use whole page
         roots = [soup.body or soup]
-    items, ctx, cache = set(), {}, {}
+    items, ctx, links, cache = set(), {}, {}, {}
 
     def clean(node):
         if id(node) not in cache:
@@ -235,12 +246,16 @@ def extract(html, selector):
             text = clean(el)
             if 4 <= len(text) <= 160 and not NOISE.search(text):
                 items.add(text)
+                a = el if el.name == "a" else (el.find_parent("a") or el.find("a"))
+                href = (a.get("href") or "").strip() if a else ""
+                if href and not href.startswith(("#", "javascript:", "mailto:")) and text not in links:
+                    links[text] = urljoin(base, href)  # direct link to the posting, when the page exposes one
                 if text not in ctx:  # smallest surrounding block that holds more than the title: the job "card"
                     for anc in list(el.parents)[:4]:
                         if len(text) + 3 < len(clean(anc)) <= 400:
                             ctx[text] = segments(anc)
                             break
-    return items, ctx, sorted(e for e in emails if not e.lower().endswith((".png", ".jpg", ".svg")))
+    return items, ctx, links, sorted(e for e in emails if not e.lower().endswith((".png", ".jpg", ".svg")))
 
 
 def looks_like_title(t):
@@ -261,12 +276,84 @@ def drop_merged(cands, items, ctx):
     return [a for a in cands if not merged(a)]
 
 
-def notify(text, html):
+# --- Apply assist --------------------------------------------------------------------------
+# New roles whose title matches ASSIST_KEYWORDS get a "ready to apply" block at the top of the alert:
+# title, company, location, link and a short draft note. Nothing is submitted automatically.
+_ak = [k.strip() for k in os.getenv("ASSIST_KEYWORDS", "data engineer,data engineering").split(",") if k.strip()]
+ASSIST_RE = re.compile(r"(?<![A-Za-z])(?:" + "|".join(re.escape(k).replace(r"\ ", r"\s+") for k in _ak) + r")(?![A-Za-z])",
+                       re.I) if _ak else None
+DEFAULT_NOTE = ("I'm a data professional with about 3 years of experience across analytics and technical support, "
+                "currently at Infosys, with a BE in Computer Science. I'm moving into data engineering and would "
+                "like to bring my SQL, Python and reporting background to the {title} role at {company}.")
+NOTE = os.getenv("APPLY_NOTE", "").strip() or DEFAULT_NOTE  # APPLY_NOTE can use {title} and {company}
+
+
+def assist_items(findings):
+    """(matching new roles, count of other new roles). First-scan lists are a baseline, not news."""
+    hits, other = [], 0
+    for f in findings:
+        if f["first"]:
+            continue
+        for i in f["items"]:
+            if ASSIST_RE and ASSIST_RE.search(i["title"]):
+                loc = i.get("loc", "")
+                if not loc:
+                    flag = "location not listed - check before applying"
+                elif re.search(r"\bremote\b", loc, re.I) and not (IN_MARK.search(loc) or is_us(loc)):
+                    flag = "remote - check it is open to your country"
+                else:
+                    flag = ""
+                try:
+                    note = NOTE.format(title=i["title"], company=f["company"])
+                except (KeyError, IndexError, ValueError):
+                    note = NOTE
+                hits.append({"company": f["company"], "title": i["title"], "loc": loc, "flag": flag,
+                             "link": i.get("link") or f["url"], "direct": bool(i.get("link")), "note": note})
+            else:
+                other += 1
+    return hits, other
+
+
+def assist_text(hits, other, page_url=""):
+    if not hits:
+        return ""
+    lines = [f"{len(hits)} new matching role{'s' if len(hits) != 1 else ''} ready to apply:", ""]
+    for n, h in enumerate(hits, 1):
+        lines += [f"{n}) {h['title']} - {h['company']}",
+                  f"   Location: {h['loc'] or 'not listed'}" + (f"  [{h['flag']}]" if h["flag"] else ""),
+                  f"   {'Apply' if h['direct'] else 'Careers page (open the role from here)'}: {h['link']}",
+                  f"   Draft note: {h['note']}", ""]
+    if other:
+        lines.append(f"{other} other new role{'s' if other != 1 else ''} not matched (see full list).")
+    if page_url:
+        lines.append(page_url)
+    return "\n".join(lines) + "\n\n----\n"
+
+
+def assist_html(hits, other):
+    if not hits:
+        return ""
+    box = "background:#E7EEFF;color:#17202B;border-radius:10px;padding:16px 20px;margin:0 0 20px;font-size:15px;line-height:1.5"
+    out = [f'<div style="{box}"><strong style="font-size:17px">{len(hits)} new matching role'
+           f'{"s" if len(hits) != 1 else ""} ready to apply</strong>']
+    for n, h in enumerate(hits, 1):
+        flag = f' <em style="color:#B42318">({escape(h["flag"])})</em>' if h["flag"] else ""
+        label = "Apply" if h["direct"] else "Careers page (open the role from here)"
+        out.append(f'<p style="margin:14px 0 4px"><strong>{n}) {escape(h["title"])}</strong> - {escape(h["company"])}<br>'
+                   f'Location: {escape(h["loc"] or "not listed")}{flag}<br>'
+                   f'{label}: <a href="{escape(h["link"])}">{escape(h["link"])}</a></p>'
+                   f'<p style="margin:0;font-style:italic">Draft note: {escape(h["note"])}</p>')
+    if other:
+        out.append(f'<p style="margin:14px 0 0;color:#5B6674">{other} other new role{"s" if other != 1 else ""} not matched (see below).</p>')
+    return "".join(out) + "</div>"
+
+
+def notify(text, html, subject=None):
     if os.getenv("SLACK_WEBHOOK"):
         requests.post(os.environ["SLACK_WEBHOOK"], json={"text": text}, timeout=15)
     if os.getenv("GMAIL_USER") and os.getenv("GMAIL_APP_PASSWORD"):
         msg = MIMEText(html, "html")
-        msg["Subject"] = f"Career page watch - {datetime.now():%b %d}"
+        msg["Subject"] = subject or f"Career page watch - {datetime.now():%b %d}"
         msg["From"] = os.environ["GMAIL_USER"]
         msg["To"] = os.getenv("NOTIFY_TO") or os.environ["GMAIL_USER"]
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
@@ -289,7 +376,7 @@ def main():
             # a URL like .../careers#open-roles hints at the job section's id
             selector = row.get("selector") or ("#" + url.split("#", 1)[1] if "#" in url else "")
             force_render = row.get("render", "").lower() in ("yes", "y", "true", "1")
-            items, ctx, emails = extract(fetch(url, force_render), selector)
+            items, ctx, links, emails = extract(fetch(url, force_render), selector, url)
         except Exception as e:
             errors.append(f"{name}: {e}")
             continue
@@ -311,7 +398,7 @@ def main():
                 status = "match"
             if REGION != "ALL" and status == "foreign":
                 continue  # wrong country: still in state.json, so it never comes back as "new" later
-            roles.append({"title": t, "loc": guess_location(ctx.get(t, ""), t), "ok": status})
+            roles.append({"title": t, "loc": guess_location(ctx.get(t, ""), t), "ok": status, "link": links.get(t, "")})
         if roles:
             findings.append({"company": name, "url": url, "first": prev is None, "emails": emails,
                              "items": roles[:25]})
@@ -339,7 +426,15 @@ def main():
     text = "\n".join(lines)
     print(text)
     if any(not f["first"] for f in findings):
-        notify(text, render([history[0]], len(rows), now, inline_css=True))
+        hits, other = assist_items(findings)
+        page_url = os.getenv("PAGE_URL", "").strip()
+        body = render([history[0]], len(rows), now, inline_css=True)
+        if hits:
+            body = body.replace('<div class="wrap">', '<div class="wrap">' + assist_html(hits, other), 1)
+            subject = f"{len(hits)} new {os.getenv('ASSIST_LABEL', 'Data Engineer')} role{'s' if len(hits) != 1 else ''} - Career watch ({now:%b %-d})"
+        else:
+            subject = None
+        notify(assist_text(hits, other, page_url) + text, body, subject)
 
 
 if __name__ == "__main__":
