@@ -2148,14 +2148,14 @@
    "Skip to content",
    "The Energy of Change Starts With You"
   ],
-  "checked": "2026-11-10T10:15:16.458776+05:30"
+  "checked": "2026-11-11T02:03:47.740161+05:30"
  },
  "https://www.amazon.jobs/content/en/locations/india/bangalore?keyword%5B%5D=data+engineer": {
   "company": "Amazon",
   "items": [
    "Bangalore, India"
   ],
-  "checked": "2026-11-10T10:15:16.458776+05:30"
+  "checked": "2026-11-11T02:03:47.740161+05:30"
  },
  "https://www.google.com/about/careers/applications/jobs/results?q=%22Data%20Engineer%22": {
   "company": "Google",
@@ -2225,12 +2225,12 @@
    "home Home",
    "link Copy link"
   ],
-  "checked": "2026-11-10T10:15:16.458776+05:30"
+  "checked": "2026-11-11T02:03:47.740161+05:30"
  },
  "https://apply.careers.microsoft.com/careers?hl=en&query=Data+Engineer&start=0&location=Bengaluru%2C+KA%2C+India&pid=1970393556947397&sort_by=relevance&filter_distance=160&filter_include_remote=1&filter_include_relocation=0": {
   "company": "Microsoft",
   "items": [],
-  "checked": "2026-11-10T10:15:16.458776+05:30"
+  "checked": "2026-11-11T02:03:47.740161+05:30"
  },
  "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?keyword=Data+Engineer&location=Bengaluru%2C+Karnataka%2C+India&locationId=300000081145775&locationLevel=city&mode=location&radius=25&radiusUnit=MI": {
   "company": "JPMorganChase",
@@ -2240,31 +2240,32 @@
    "+ 25 mi",
    "+ 5 mi",
    "+ 50 mi",
-   "79 Open Jobs",
+   "76 Open Jobs",
    "Agility ( 1 )",
    "Analytics Solutions & Delivery",
    "Analytics Solutions & Delivery ( 3 )",
-   "Apply your skillsets to drive innovation and modernize the world's most complex and mission-critical systems",
    "Architecture ( 1 )",
    "Are You Still With Us?",
    "Be a key player in revolutionizing payment operations, where your expertise will drive efficiency and innovation.",
    "Bengaluru, Karnataka, India",
-   "Bengaluru, Karnataka, India and 1 more",
    "Build and deploy agentic AI and machine learning solutions in Python to solve complex business problems at scale.",
    "Build and scale robust data platforms using backend engineering and big data skills in Python and Java to promote business growth.",
+   "Business Analysis & Reporting",
+   "Business Analysis & Reporting ( 1 )",
    "Careers",
    "Carry out critical infrastructure engineering solutions across multiple technical areas as an integral part of an agile team",
    "Carry out critical tech solutions across multiple technical areas as an integral part of an agile team",
    "Categories 0",
    "Data & Analytics",
+   "Data Engineering",
+   "Data Engineering ( 1 )",
    "Data Management ( 1 )",
    "Data Scientist Lead - Agentic Solutions Bengaluru, Karnataka, India Data & Analytics Predictive Science We have an exciting and rewarding opportunity for you .",
+   "Design and deliver market-leading technology products in a secure and scalable way as a seasoned member of an agile team",
+   "Develop, test, and maintain critical data pipelines and architectures across multiple technical areas",
    "Didn't find the perfect job? Create a profile so we can help",
    "Distance",
    "Drive innovation and solution delivery while leading a technical data area and serving as a primary decision maker for your teams",
-   "Drive significant business impact and tackle a diverse array of challenges that span multiple technologies and applications",
-   "Engineer enterprise-scale VMware infrastructure across global data centers, powering tens of thousands of workloads with automation.",
-   "Executive Director leading Java and Amazon Web Services modernization for a high-scale reconciliations platform.",
    "Filter Results",
    "Greater than 30 days ( 10 )",
    "Grow with us",
@@ -2276,34 +2277,37 @@
    "Infrastructure Engineering",
    "Infrastructure Engineering ( 4 )",
    "Join the Network",
-   "Lead Security Engineer developing secure software systems; drive technical excellence, reliability, and end-to-end ownership.",
    "Lead multiple teams, manage day-to-day implementation activities, and set overall guidance for team output, practices and collaboration",
-   "Less than 30 days ( 69 )",
-   "Less than 7 days ( 25 )",
+   "Less than 30 days ( 66 )",
+   "Less than 7 days ( 27 )",
+   "Leverage your strong knowledge of software, applications, and technical processes across multiple applications",
    "Location",
    "Manage Preferences",
    "Onboarding ( 2 )",
    "Operations",
+   "Own model monitoring data models and pipelines, automate workflows, and deliver risk reporting with strong governance.",
    "Payments Lifecycle",
    "Payments Lifecycle ( 1 )",
    "Postal Code",
    "Posting Date",
    "Posting Dates 0",
-   "Posting Dates 0 Less than 30 days ( 69 ) Less than 7 days ( 25 ) Greater than 30 days ( 10 )",
+   "Posting Dates 0 Less than 30 days ( 66 ) Less than 7 days ( 27 ) Greater than 30 days ( 10 )",
    "Predictive Science",
-   "Predictive Science ( 10 )",
+   "Predictive Science ( 9 )",
    "Product ( 1 )",
    "Product Management ( 1 )",
-   "Product Portfolio & Delivery ( 1 )",
    "Relevance",
+   "Risk",
+   "Risk Analytics/Modeling",
+   "Risk Analytics/Modeling ( 1 )",
    "Search Jobs - JPMC Candidate Experience page Careers",
-   "Security Engineering",
-   "Security Engineering ( 1 )",
+   "Senior Lead Software Engineer driving backend payments services with secure, resilient design and approved AI-assisted engineering.",
    "Serve as an emerging member of an agile team to design and deliver market-leading technology products in a secure and scalable way",
    "Skip to main content.",
    "Software Engineering",
-   "Software Engineering ( 50 )",
+   "Software Engineering ( 47 )",
    "Students",
+   "Support Basel regulatory capital reporting by producing and analyzing risk-weighted assets and exposure trends.",
    "Switch to Kilometers",
    "Talent Network",
    "Talent Network Didn't find the perfect job? Create a profile so we can help Join the Network",
@@ -2317,6 +2321,6 @@
    "Work in technology while increasing your knowledge and skillsets at one of the world's leading organizations",
    "Work with us"
   ],
-  "checked": "2026-11-10T10:15:16.458776+05:30"
+  "checked": "2026-11-11T02:03:47.740161+05:30"
  }
 }

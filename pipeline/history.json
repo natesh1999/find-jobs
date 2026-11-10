@@ -1,5 +1,25 @@
 [
  {
+  "checked": "2026-11-11T02:03:47.740161+05:30",
+  "findings": [
+   {
+    "company": "JPMorganChase",
+    "url": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?keyword=Data+Engineer&location=Bengaluru%2C+Karnataka%2C+India&locationId=300000081145775&locationLevel=city&mode=location&radius=25&radiusUnit=MI",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Software Engineering ( 47 )",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     }
+    ]
+   }
+  ],
+  "errors": []
+ },
+ {
   "checked": "2026-11-10T10:15:16.458776+05:30",
   "findings": [
    {
