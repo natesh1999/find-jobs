@@ -1,5 +1,57 @@
 [
  {
+  "checked": "2026-11-10T09:34:57.096026+05:30",
+  "findings": [
+   {
+    "company": "GE Vernova",
+    "url": "https://careers.gevernova.com/jobs?keyword=Lead%20Data%20Engineer%20%E2%80%93%20Engineering%20Systems&filter%5Bstate%5D%5B0%5D=Karn%C4%81taka&filter%5Bcity%5D%5B0%5D=Bengaluru",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Lead Engineer - Enterprise PLM Applications",
+      "loc": "",
+      "ok": "match"
+     }
+    ]
+   },
+   {
+    "company": "Google",
+    "url": "https://www.google.com/about/careers/applications/jobs/results?q=%22Data%20Engineer%22",
+    "first": true,
+    "emails": [],
+    "items": [
+     {
+      "title": "Data Customer Solutions Engineer, Google Cloud",
+      "loc": "",
+      "ok": "unknown"
+     },
+     {
+      "title": "Data Engineer, Technical Solutions, Geo",
+      "loc": "",
+      "ok": "unknown"
+     },
+     {
+      "title": "Data Engineer, YouTube India",
+      "loc": "",
+      "ok": "match"
+     },
+     {
+      "title": "Data and AI Engineer",
+      "loc": "",
+      "ok": "unknown"
+     },
+     {
+      "title": "Senior Data Engineer, Product Analytics, Payments",
+      "loc": "",
+      "ok": "unknown"
+     }
+    ]
+   }
+  ],
+  "errors": []
+ },
+ {
   "checked": "2026-10-25T22:41:28.103069+05:30",
   "findings": [
    {
