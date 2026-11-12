@@ -1,5 +1,39 @@
 [
  {
+  "checked": "2026-11-13T02:31:02.806404+05:30",
+  "findings": [
+   {
+    "company": "Google",
+    "url": "https://www.google.com/about/careers/applications/jobs/results?q=%22Data%20Engineer%22",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Data Engineer, gUP Engineering",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     }
+    ]
+   },
+   {
+    "company": "JPMorganChase",
+    "url": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?keyword=Data+Engineer&location=Bengaluru%2C+Karnataka%2C+India&locationId=300000081145775&locationLevel=city&mode=location&radius=25&radiusUnit=MI",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Software Engineering ( 46 )",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     }
+    ]
+   }
+  ],
+  "errors": []
+ },
+ {
   "checked": "2026-11-11T02:03:47.740161+05:30",
   "findings": [
    {
