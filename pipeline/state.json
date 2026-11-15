@@ -2148,14 +2148,14 @@
    "Skip to content",
    "The Energy of Change Starts With You"
   ],
-  "checked": "2026-11-15T00:19:10.125837+05:30"
+  "checked": "2026-11-16T00:57:41.597835+05:30"
  },
  "https://www.amazon.jobs/content/en/locations/india/bangalore?keyword%5B%5D=data+engineer": {
   "company": "Amazon",
   "items": [
    "Bangalore, India"
   ],
-  "checked": "2026-11-15T00:19:10.125837+05:30"
+  "checked": "2026-11-16T00:57:41.597835+05:30"
  },
  "https://www.google.com/about/careers/applications/jobs/results?q=%22Data%20Engineer%22": {
   "company": "Google",
@@ -2226,12 +2226,12 @@
    "home Home",
    "link Copy link"
   ],
-  "checked": "2026-11-15T00:19:10.125837+05:30"
+  "checked": "2026-11-16T00:57:41.597835+05:30"
  },
  "https://apply.careers.microsoft.com/careers?hl=en&query=Data+Engineer&start=0&location=Bengaluru%2C+KA%2C+India&pid=1970393556947397&sort_by=relevance&filter_distance=160&filter_include_remote=1&filter_include_relocation=0": {
   "company": "Microsoft",
   "items": [],
-  "checked": "2026-11-15T00:19:10.125837+05:30"
+  "checked": "2026-11-16T00:57:41.597835+05:30"
  },
  "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?keyword=Data+Engineer&location=Bengaluru%2C+Karnataka%2C+India&locationId=300000081145775&locationLevel=city&mode=location&radius=25&radiusUnit=MI": {
   "company": "JPMorganChase",
@@ -2248,11 +2248,11 @@
    "Applied AI ML Lead Bengaluru, Karnataka, India Data & Analytics Predictive Science Contribute to a transformative journey and make a substantial impact",
    "Architecture ( 1 )",
    "Are You Still With Us?",
-   "Be a key player in revolutionizing payment operations, where your expertise will drive efficiency and innovation.",
    "Bengaluru, Karnataka, India",
    "Bengaluru, Karnataka, India and 1 more",
    "Build and scale robust data platforms using backend engineering and big data skills in Python and Java to promote business growth.",
    "Build your career in Data and Transformation while working in the world\u2019s most innovative bank which values creativity and excellence.",
+   "Business Analysis & Reporting",
    "Business Analysis & Reporting ( 1 )",
    "Careers",
    "Carry out critical tech solutions across multiple technical areas as an integral part of an agile team",
@@ -2273,7 +2273,7 @@
    "Finance",
    "Financial Analysis",
    "Financial Analysis ( 1 )",
-   "Greater than 30 days ( 12 )",
+   "Greater than 30 days ( 13 )",
    "Grow with us",
    "How we hire",
    "I am an employee",
@@ -2283,11 +2283,10 @@
    "Join the Network",
    "Lead and conduct resiliency design reviews, break up complex problems, and act as a technical lead for medium to large sized products",
    "Lead our payment processing operations with your expertise, driving automation and innovation to enhance efficiency and resilience.",
-   "Less than 30 days ( 56 )",
+   "Less than 30 days ( 55 )",
    "Less than 7 days ( 24 )",
    "Location",
    "Manage Preferences",
-   "Mumbai, Maharashtra, India and 1 more",
    "Operations",
    "Own budgeting, forecasting, reporting and headcount planning while partnering with technology leaders to drive insights.",
    "Own model monitoring data models and pipelines, automate workflows, and deliver risk reporting with strong governance.",
@@ -2296,7 +2295,7 @@
    "Postal Code",
    "Posting Date",
    "Posting Dates 0",
-   "Posting Dates 0 Less than 30 days ( 56 ) Less than 7 days ( 24 ) Greater than 30 days ( 12 )",
+   "Posting Dates 0 Less than 30 days ( 55 ) Less than 7 days ( 24 ) Greater than 30 days ( 13 )",
    "Predictive Science",
    "Predictive Science ( 10 )",
    "Product Management ( 1 )",
@@ -2311,6 +2310,7 @@
    "Software Engineering",
    "Software Engineering ( 42 )",
    "Students",
+   "Support Basel regulatory capital reporting by producing and analyzing risk-weighted assets and exposure trends.",
    "Switch to Kilometers",
    "Talent Network",
    "Talent Network Didn't find the perfect job? Create a profile so we can help Join the Network",
@@ -2322,6 +2322,6 @@
    "Work Summary",
    "Work with us"
   ],
-  "checked": "2026-11-15T00:19:10.125837+05:30"
+  "checked": "2026-11-16T00:57:41.597835+05:30"
  }
 }
