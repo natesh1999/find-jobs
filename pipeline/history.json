@@ -1,5 +1,59 @@
 [
  {
+  "checked": "2026-11-19T03:08:01.471658+05:30",
+  "findings": [
+   {
+    "company": "GE Vernova",
+    "url": "https://careers.gevernova.com/jobs?keyword=Lead%20Data%20Engineer%20%E2%80%93%20Engineering%20Systems&filter%5Bstate%5D%5B0%5D=Karn%C4%81taka&filter%5Bcity%5D%5B0%5D=Bengaluru",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Lead Engineer - Mechanical Component",
+      "loc": "",
+      "ok": "match",
+      "link": "https://careers.gevernova.com/lead-engineer-mechanical-component/job/R5053426"
+     }
+    ]
+   },
+   {
+    "company": "Google",
+    "url": "https://www.google.com/about/careers/applications/jobs/results?q=%22Data%20Engineer%22",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Data Engineer",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     },
+     {
+      "title": "Data Engineer, YouTube",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     }
+    ]
+   },
+   {
+    "company": "JPMorganChase",
+    "url": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?keyword=Data+Engineer&location=Bengaluru%2C+Karnataka%2C+India&locationId=300000081145775&locationLevel=city&mode=location&radius=25&radiusUnit=MI",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Software Engineering ( 51 )",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     }
+    ]
+   }
+  ],
+  "errors": []
+ },
+ {
   "checked": "2026-11-18T03:23:02.976877+05:30",
   "findings": [
    {
