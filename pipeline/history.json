@@ -1,5 +1,53 @@
 [
  {
+  "checked": "2026-11-24T06:38:41.501088+05:30",
+  "findings": [
+   {
+    "company": "GE Vernova",
+    "url": "https://careers.gevernova.com/jobs?keyword=Lead%20Data%20Engineer%20%E2%80%93%20Engineering%20Systems&filter%5Bstate%5D%5B0%5D=Karn%C4%81taka&filter%5Bcity%5D%5B0%5D=Bengaluru",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Principal Engineer Commercial & Services",
+      "loc": "",
+      "ok": "match",
+      "link": "https://careers.gevernova.com/principal-engineer-commercial-services/job/R5055650"
+     }
+    ]
+   },
+   {
+    "company": "Google",
+    "url": "https://www.google.com/about/careers/applications/jobs/results?q=%22Data%20Engineer%22",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Data Engineer, Cloud Learning Services",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     }
+    ]
+   },
+   {
+    "company": "JPMorganChase",
+    "url": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?keyword=Data+Engineer&location=Bengaluru%2C+Karnataka%2C+India&locationId=300000081145775&locationLevel=city&mode=location&radius=25&radiusUnit=MI",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Software Engineering ( 48 )",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     }
+    ]
+   }
+  ],
+  "errors": []
+ },
+ {
   "checked": "2026-11-22T01:42:32.685267+05:30",
   "findings": [
    {
