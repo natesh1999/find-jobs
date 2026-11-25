@@ -1,5 +1,39 @@
 [
  {
+  "checked": "2026-11-26T04:11:10.756354+05:30",
+  "findings": [
+   {
+    "company": "GE Vernova",
+    "url": "https://careers.gevernova.com/jobs?keyword=Lead%20Data%20Engineer%20%E2%80%93%20Engineering%20Systems&filter%5Bstate%5D%5B0%5D=Karn%C4%81taka&filter%5Bcity%5D%5B0%5D=Bengaluru",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Sr Data Scientist",
+      "loc": "",
+      "ok": "match",
+      "link": "https://careers.gevernova.com/sr-data-scientist/job/R5059764"
+     }
+    ]
+   },
+   {
+    "company": "JPMorganChase",
+    "url": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/jobs?keyword=Data+Engineer&location=Bengaluru%2C+Karnataka%2C+India&locationId=300000081145775&locationLevel=city&mode=location&radius=25&radiusUnit=MI",
+    "first": false,
+    "emails": [],
+    "items": [
+     {
+      "title": "Software Engineering ( 49 )",
+      "loc": "",
+      "ok": "unknown",
+      "link": ""
+     }
+    ]
+   }
+  ],
+  "errors": []
+ },
+ {
   "checked": "2026-11-25T04:43:36.163471+05:30",
   "findings": [
    {
